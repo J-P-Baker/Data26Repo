@@ -1,0 +1,6 @@
+ls - show all files in structure
+cd [folder] - go into file
+git clone [url] - clone reposetory to location
+git status - show status of files in folder
+git add . - adds files to list to commit
+git commit -m [commit message] - commits files
