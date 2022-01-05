@@ -2,5 +2,7 @@ ls - show all files in structure
 cd [folder] - go into file
 git clone [url] - clone reposetory to location
 git status - show status of files in folder
-git add . - adds files to list to commit
-git commit -m ["commit message"] - commits files
+git add . - adds files to list to do something
+git commit -m ["commit message"] - marks files to commit
+git push - pushes it though and commits it
+git checkout -b ["name"] - create a branch 
