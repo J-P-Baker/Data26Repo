@@ -5,4 +5,5 @@ git status - show status of files in folder
 git add . - adds files to list to do something
 git commit -m ["commit message"] - marks files to commit
 git push - pushes it though and commits it
-git checkout -b ["name"] - create a branch 
+git checkout -b ["name"] - create a branch
+git push --set-upstream origin Jacobs_branch - push the current branch and set the remote as upstream
