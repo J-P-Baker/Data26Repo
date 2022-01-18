@@ -7,6 +7,7 @@ def transform_user_details(csv_file_name):
         csv_reader = csv.reader(csvfile, delimiter=",")
 
         for row in csv_reader:
+            print(row)
             new_user_data.append([row[1], row[2], row[-1]])
 
         return new_user_data

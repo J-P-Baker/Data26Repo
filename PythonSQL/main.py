@@ -25,8 +25,19 @@ with pyodbc.connect(
 
         df.to_csv('test_Csv.csv', index=False)
 
-def temp():
-    return True
+
+        columns = [columns[0] for columns in cursor.description]
+        print(columns)
+        total =[]
+
+        rows = cursor.execute("SELECT * FROM Products")
+        while True:
+            record = rows.fetchone()
+            if record is None:
+                break
+            total.append(record.UnitPrice)
+            print(record.UnitPrice)
+        print(sum(total)/len(total))
 
 
 
