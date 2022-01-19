@@ -8,7 +8,6 @@ then insert the starships into your own collection. Use functions at the very le
 
 """
 
-import json
 import pymongo
 import requests
 
@@ -61,8 +60,7 @@ def replace_pilots(file):
             pass
         else:
             for o in i['pilots']:
-                pilots_api_call_key.append(o)
-                call = (call_api(pilots_api_call_key[0]))
+                call = (call_api(o))
                 replace.append(get_mongodb_character_id(call[0]["name"]))
             i['pilots'] = replace
     return file
