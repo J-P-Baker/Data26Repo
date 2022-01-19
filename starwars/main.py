@@ -14,14 +14,8 @@ import requests
 client = pymongo.MongoClient()
 db = client['starwars']
 
-db.starships.drop()
-db.create_collection('starships')
 
-starting_api = "https://swapi.dev/api/starships"
 
-#testing_api_1 = "https://swapi.dev/api/people/13/"
-#testing_api_2 = "https://swapi.dev/api/starships/5/"
-#testing_ship_1 = [{'name': 'Jedi Interceptor', 'model': 'Eta-2 Actis-class light interceptor', 'manufacturer': 'Kuat Systems Engineering', 'cost_in_credits': '320000', 'length': '5.47', 'max_atmosphering_speed': '1500', 'crew': '1', 'passengers': '0', 'cargo_capacity': '60', 'consumables': '2 days', 'hyperdrive_rating': '1.0', 'MGLT': 'unknown', 'starship_class': 'starfighter', 'pilots': ['https://swapi.dev/api/people/10/', 'https://swapi.dev/api/people/11/'], 'films': ['https://swapi.dev/api/films/6/'], 'created': '2014-12-20T19:56:57.468000Z', 'edited': '2014-12-20T21:23:49.951000Z', 'url': 'https://swapi.dev/api/starships/65/'}]
 
 def call_api(api):
     output = []
@@ -61,6 +55,7 @@ def replace_pilots(file):
                 call = (call_api(o))
                 replace.append(get_mongodb_character_id(call[0]["name"]))
             i['pilots'] = replace
+    print(file)
     return file
 
 
@@ -69,11 +64,18 @@ def upload_to_mongodb(input):
     for i in input:
         db.starships.insert_one(i)
     print("done")
+    return True
 
 
-print("calling api to return ships json")
-starship_files = call_api(starting_api)
-print("replace pilots 1 by 1")
-starship_files_with_links = replace_pilots(starship_files)
-print("uploading to mongodb")
-upload_to_mongodb(starship_files_with_links)
+if __name__ == '__main__':
+    db.starships.drop()
+    db.create_collection('starships')
+
+    starting_api = "https://swapi.dev/api/starships"
+
+    print("calling api to return ships json")
+    starship_files = call_api(starting_api)
+    print("replace pilots 1 by 1")
+    starship_files_with_links = replace_pilots(starship_files)
+    print("uploading to mongodb")
+    upload_to_mongodb(starship_files_with_links)
