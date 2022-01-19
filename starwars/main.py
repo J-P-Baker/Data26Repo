@@ -29,20 +29,18 @@ def call_api(api):
     while api is not None:
 
         # get the output from api of url api
-        response = requests.get(api)
-
-        # convert to a list of dictionary
-        response1 = dict(response.json())
+        #   convert to a list of dictionary
+        response = dict(requests.get(api).json())
 
         # make api the next api (be that None or the next page) if it works, append all dicts in list
         #   else just append whats in there to list and make api None to end loop
         try:
-            api = response1['next']
-            for i in response1['results']:
+            api = response['next']
+            for i in response['results']:
                 output.append(i)
         except:
             api = None
-            output.append(response1)
+            output.append(response)
     return output
 
 def get_mongodb_character_id(value):
