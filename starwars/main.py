@@ -39,8 +39,8 @@ def call_api(api):
 
 def get_mongodb_character_id(value):
     #calls the name from mongo db database and returns id only
-    character_id = db.characters.find_one({"name": value}, {"_id": 1})
-    return character_id["_id"]
+    character_id =
+    return character_id["_id"]db.characters.find_one({"name": value}, {"_id": 1})
 
 def replace_pilots(file):
     #takes every item in file
